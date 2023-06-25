@@ -8,9 +8,9 @@ export const bookbuzzApi = createApi({
         mode: 'cors',
         credentials: 'include',
         prepareHeaders: (headers, { getState }) => {
-            headers.set('Content-Type', 'application/json')
-            headers.set('Access-Control-Allow-Origin', '*,*')
-            headers.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT')
+            // headers.set('Content-Type', 'application/json')
+            // headers.set('Access-Control-Allow-Origin', '*,*')
+            // headers.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT')
             const token = getState().user?.result?.jwt
 
             if (token) {
