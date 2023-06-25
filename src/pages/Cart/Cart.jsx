@@ -8,12 +8,12 @@ const Cart = () => {
                 <div className={styles.wrapper}>
                     <div className={styles.itemsContainer}>
                         {books.map((item) => (
-                            <div className={styles.item}>
+                            <div key={item.id} className={styles.item}>
                                 <div className={styles.itemInfo}>
                                     <div className={styles.top}>
                                         <div className={styles.summary}>
                                             <h3>{item.title}</h3>
-                                            <p>{item.desc}</p>
+                                            <p>{item.subtitleShort}</p>
                                         </div>
                                         <div className={styles.removeItem}>
                                             <svg
@@ -39,7 +39,7 @@ const Cart = () => {
                                     </div>
                                 </div>
                                 <div className={styles.itemImage}>
-                                    <img src={item.img} alt={item.title} />
+                                    <img src={item.mainImage} alt={item.title} />
                                     <div className={styles.changeQt}>
                                         <div>
                                             <svg
