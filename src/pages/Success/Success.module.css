@@ -1,0 +1,43 @@
+.wrapper {
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.succesContainer,
+.errorContainer {
+    width: 450px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 40px 30px;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+}
+
+.content {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.iconContainer {
+    width: 70px;
+    height: 70px;
+}
+
+.title {
+    font-weight: 500;
+}
+
+.message {
+    width: 280px;
+    text-align: center;
+    margin: 20px 0px 0px;
+}

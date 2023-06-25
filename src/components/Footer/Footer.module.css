@@ -1,0 +1,33 @@
+.footer {
+    border-top: 1px solid #ddd;
+}
+
+.footerBody {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 60px 80px 120px 60px;
+}
+
+.leftBar {
+    display: flex;
+    justify-content: start;
+}
+
+.leftBar h1 {
+    line-height: 25px;
+}
+
+.rightBar {
+    display: flex;
+}
+
+.socials {
+    list-style: none;
+    margin-left: 70px;
+}
+
+.socials li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,5 @@
+export {default as MainPage} from './MainPage/MainPage.jsx'
+export {default as LoginPage} from './LoginPage/LoginPage.jsx'
+export {default as ProductPage} from './ProductPage/ProductPage.jsx'
+export {default as Cart} from './Cart/Cart.jsx'
+export {default as Success} from './Success/Success.jsx'
