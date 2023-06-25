@@ -4,7 +4,7 @@ export const bookbuzzApi = createApi({
     reducerPath: 'bookbuzzApi',
     tagTypes: ['Products', 'Orders'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://bookbuzz.cronhex.com/api/v1/',
+        baseUrl: 'https://bookbuzz.cronhex.com/api/v1/',
         mode: 'cors',
         credentials: 'include',
         prepareHeaders: (headers, { getState }) => {
