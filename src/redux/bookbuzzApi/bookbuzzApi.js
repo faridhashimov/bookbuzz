@@ -6,7 +6,7 @@ export const bookbuzzApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://dry-falls-41861-88221b34a74e.herokuapp.com/http://bookbuzz.cronhex.com/api/v1/',
         mode: 'cors',
-        credentials: 'include',
+        credentials: 'same-origin',
         prepareHeaders: (headers, { getState }) => {
             // headers.set('Content-Type', 'application/json')
             // headers.set('Access-Control-Allow-Origin', '*,*')
