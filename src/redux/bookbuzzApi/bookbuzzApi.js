@@ -4,8 +4,8 @@ export const bookbuzzApi = createApi({
     reducerPath: 'bookbuzzApi',
     tagTypes: ['Products', 'Orders'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://bookbuzz.cronhex.com/api/v1/',
-        mode: 'no-cors',
+        baseUrl: 'https://dry-falls-41861-88221b34a74e.herokuapp.com/http://bookbuzz.cronhex.com/api/v1/',
+        mode: 'cors',
         credentials: 'include',
         prepareHeaders: (headers, { getState }) => {
             // headers.set('Content-Type', 'application/json')
