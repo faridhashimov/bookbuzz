@@ -5,7 +5,7 @@ export const bookbuzzApi = createApi({
     tagTypes: ['Products', 'Orders'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://bookbuzz.cronhex.com/api/v1/',
-        mode: 'cors',
+        mode: 'no-cors',
         credentials: 'include',
         prepareHeaders: (headers, { getState }) => {
             // headers.set('Content-Type', 'application/json')
@@ -58,4 +58,10 @@ export const bookbuzzApi = createApi({
     }),
 })
 
-export const { useGetAllProductsQuery, useLoginUserMutation } = bookbuzzApi
+export const {
+    useGetAllProductsQuery,
+    useGetSearchedProductsQuery,
+    useCheckoutMutation,
+    useGetProductQuery,
+    useLoginUserMutation,
+} = bookbuzzApi
