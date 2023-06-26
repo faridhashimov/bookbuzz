@@ -2,13 +2,20 @@ import { useState } from 'react'
 import { useGetAllProductsQuery } from '../../redux/bookbuzzApi'
 
 import styles from './MainPage.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const MainPage = () => {
+    const navigate = useNavigate()
+    const user = useSelector((state) => state.user.user)
+    if (!user) {
+        navigate('/login', { replace: true })
+    }
     const [index, setIndex] = useState(10)
-    const { data: books, isLoading, isError } = useGetAllProductsQuery()
+    const { data: books = [], isLoading, isError } = useGetAllProductsQuery()
 
     let elements = []
+
     elements = books.slice(0, index)
 
     const handleLoad = () => {
