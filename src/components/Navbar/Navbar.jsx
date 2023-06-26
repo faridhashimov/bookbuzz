@@ -5,7 +5,6 @@ import { useDebounce } from '../../hooks/useDebounce'
 import { useGetSearchedProductsQuery } from '../../redux/bookbuzzApi'
 import { useState } from 'react'
 import { SearchDropdown } from '../../components'
-import { books } from '../../books'
 import { useDispatch, useSelector } from 'react-redux'
 import { logOut } from '../../redux/userSlice'
 
