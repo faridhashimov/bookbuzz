@@ -22,7 +22,7 @@
     padding: 35px 10px 70px;
     border-radius: 10px;
     position: relative;
-    box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .loadBtn {
-    background-color: #19191B;
+    background-color: #19191b;
     padding: 7px 25px;
     border-radius: 10px;
     margin: 50px 0px;
@@ -59,6 +59,10 @@
     font-weight: 500;
     align-self: center;
     cursor: pointer;
+}
+
+.loadBtn:disabled {
+    background-color: gray;
 }
 
 .actionIcon {
@@ -81,7 +85,7 @@
     background-color: #ffffff;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0px 2px 2px rgba(0,0,0,0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .likeIcon svg {
@@ -92,4 +96,27 @@
 
 .likeIcon span {
     font-size: 12px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    .mainTitle {
+        margin-bottom: 20px;
+    }
+    .contentGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .imageContainer {
+        height: 180px;
+       
+    }
+
+    .imageContainer img {
+        object-fit: fill;
+    }
+    
 }

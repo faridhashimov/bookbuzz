@@ -1,10 +1,18 @@
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import {
+    createBrowserRouter,
+    Navigate,
+    Outlet,
+    RouterProvider,
+} from 'react-router-dom'
 import { MainPage, Cart, LoginPage, ProductPage, Success } from './pages'
 
 import './App.css'
 import { Footer, Navbar } from './components'
+import { useSelector } from 'react-redux'
 
 function App() {
+    const user = useSelector((state) => state.user.user)
+
     const Layout = () => {
         return (
             <div className="app">
@@ -22,10 +30,14 @@ function App() {
             children: [
                 {
                     path: '/',
-                    element: <MainPage />,
+                    element: user ? (
+                        <MainPage />
+                    ) : (
+                        <Navigate to="/login" replace />
+                    ),
                 },
                 {
-                    path: '/:product',
+                    path: '/product/:id',
                     element: <ProductPage />,
                 },
                 {

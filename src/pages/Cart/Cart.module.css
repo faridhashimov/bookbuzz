@@ -52,6 +52,7 @@
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    border: none;
 }
 
 .itemInfo {
@@ -78,11 +79,16 @@
     align-items: center;
     border-radius: 5px;
     color: #fff;
+    overflow: hidden;
 }
 
-.changeQt div {
+.changeQt button {
     cursor: pointer;
     padding: 2px 7px;
+    background-color: inherit;
+    outline: none;
+    border: none;
+    border-radius: 5px;
 }
 
 .changeQt span {
@@ -108,7 +114,6 @@
     position: sticky;
     top: 40px;
 }
-
 
 .checkout h3 {
     padding-bottom: 10px;
@@ -148,4 +153,65 @@
 
 .totalContainer {
     margin-bottom: 40px;
+}
+
+/* Empty Cart */
+.noProductContainer {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.noProductContainer span {
+    font-size: 15px;
+    color: #777;
+}
+
+.goShopBtn {
+    padding: 7px 45px;
+    background-color: #19191B;
+    border: 1px solid #19191B;
+    cursor: pointer;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    outline: none;
+    text-decoration: none;
+}
+
+.goShopBtn:hover {
+    background-color: #000;
+}
+
+.cartImageContainer {
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+}
+
+.cartImageContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+/* Mobile */
+
+@media (max-width: 500px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .itemsContainer {
+        margin-right: 0px;
+    }
+    .checkout {
+        position: initial;
+        margin: 0px;
+        align-self: center;
+    }
 }

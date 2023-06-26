@@ -12,6 +12,7 @@
     cursor: pointer;
     transition: all ease-in .2s;
     text-decoration: none;
+    text-align: center;
 }
 
 .btn:hover {

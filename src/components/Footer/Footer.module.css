@@ -31,3 +31,30 @@
     margin-bottom: 10px;
     cursor: pointer;
 }
+
+/* Mobile */
+
+@media (max-width: 500px) {
+    .footerBody {
+        /* width: 100%; */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0px;
+    }
+
+    .leftBar {
+        margin-bottom: 20px;
+    }
+
+    .rightBar {
+        gap: 15px;
+    }
+
+    .socials {
+        margin: 0px;
+    }
+    .socials li {
+        margin-bottom: 5px;
+    }
+}

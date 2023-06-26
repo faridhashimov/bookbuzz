@@ -9,10 +9,11 @@ import styles from './LoginPage.module.css'
 
 const LoginPage = () => {
     const [showPwd, setShowPwd] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
     const emailRef = useRef()
     const passwordRef = useRef()
     const dispatch = useDispatch()
-    const navigate = useNavigate
+    const navigate = useNavigate()
 
     const [loginUser, { isError, isLoading, error }] = useLoginUserMutation()
 
@@ -26,6 +27,7 @@ const LoginPage = () => {
             dispatch(userLogin(user))
             navigate('/cart', { replace: true })
         } catch (err) {
+            setErrorMsg(err.data.errorMessage)
             // setFocus(false)
             // setErrMsg(err.data)
         }
@@ -38,7 +40,7 @@ const LoginPage = () => {
                     <div className={styles.infoContainer}>
                         <h1>BookBuzz</h1>
                         <div className={styles.imageContainer}>
-                            <img src={bookReader} alt="" />
+                            <img src={bookReader} alt="login" />
                         </div>
                     </div>
                     <div className={styles.formContainer}>
@@ -47,13 +49,13 @@ const LoginPage = () => {
                             className={styles.loginForm}
                             onSubmit={handleSubmit}
                         >
-                            <label htmlFor='email'>Email</label>
+                            <label htmlFor="email">Email</label>
                             <div className={styles.inputContainer}>
                                 <input
                                     className={styles.loginInput}
                                     type="email"
-                                    name='email'
-                                    id='email'
+                                    name="email"
+                                    id="email"
                                     placeholder="Enter your email..."
                                     ref={emailRef}
                                 />
@@ -101,8 +103,17 @@ const LoginPage = () => {
                                     )}
                                 </div>
                             </div>
+                            {errorMsg.length > 0 ? (
+                                <div className={styles.errorMsg}>
+                                    <p>{errorMsg}</p>
+                                </div>
+                            ) : null}
                             <button
                                 className="btn"
+                                // disabled={
+                                //     !emailRef.current ||
+                                //     !passwordRef.current
+                                // }
                                 // type="submit"
                                 // disabled={isFetching}
                             >

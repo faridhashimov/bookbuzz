@@ -1,11 +1,14 @@
+import { useLocation } from 'react-router-dom'
 import styles from './Success.module.css'
 
-const Success = ({ isError }) => {
+const Success = () => {
+    const location = useLocation()
+
     return (
         <main>
             <div className="container">
                 <div className={styles.wrapper}>
-                    {!isError ? (
+                    {!location.state.isSuccess ? (
                         <div className={styles.succesContainer}>
                             <div className={styles.content}>
                                 <div className={styles.iconContainer}>

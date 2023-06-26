@@ -1,12 +1,21 @@
-import { books } from '../../books'
-import { useGetAllProductsQuery } from '../../redux/bookbuzzApi';
+import { useState } from 'react'
+import { useGetAllProductsQuery } from '../../redux/bookbuzzApi'
 
 import styles from './MainPage.module.css'
+import { Link } from 'react-router-dom'
 
 const MainPage = () => {
-    // const { data: books, isLoading, isError } = useGetAllProductsQuery()
-    console.log(books);
+    const [index, setIndex] = useState(10)
+    const { data: books, isLoading, isError } = useGetAllProductsQuery()
 
+    let elements = []
+    elements = books.slice(0, index)
+
+    const handleLoad = () => {
+        if (index < books.length - 1) {
+            setIndex((index) => (index += 5))
+        }
+    }
 
     return (
         <main>
@@ -15,7 +24,7 @@ const MainPage = () => {
                     <h1 className={styles.mainTitle}>Browse All Books</h1>
                     <div className={styles.gridWrapper}>
                         <div className={styles.contentGrid}>
-                            {books.map((item) => (
+                            {elements.map((item) => (
                                 <div key={item.id} className={styles.content}>
                                     <div className={styles.actionIcon}>
                                         <svg
@@ -65,16 +74,29 @@ const MainPage = () => {
                                     </div>
                                     <div className={styles.like}></div>
                                     <div className={styles.imageContainer}>
-                                        <img src={item.mainImage} alt={item.title} />
+                                        <Link to={`/product/${item.id}`}>
+                                            <img
+                                                src={item.mainImage}
+                                                alt={item.title}
+                                            />
+                                        </Link>
                                     </div>
                                     <h3 className={styles.title}>
                                         {item.title}
                                     </h3>
-                                    <p className={styles.desc}>{item.desc}</p>
+                                    <p className={styles.desc}>
+                                        {item.subtitleShort}
+                                    </p>
                                 </div>
                             ))}
                         </div>
-                        <button className={styles.loadBtn}>Load more</button>
+                        <button
+                            disabled={index < books.length - 1 ? false : true}
+                            onClick={handleLoad}
+                            className={styles.loadBtn}
+                        >
+                            Load more
+                        </button>
                     </div>
                 </div>
             </div>

@@ -86,3 +86,39 @@
 .iconContainer svg {
     /* fill: #5D5D5B; */
 }
+
+
+.errorMsg {
+    height: 33px;
+    width: 100%;
+    padding: 5px 15px;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #F05A5C;
+    border-radius: 20px;
+}
+
+/* Monitor */
+
+@media (min-width: 1440px) {
+    .wrapper {
+        height: 100vh;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+    .wrapper {
+        flex-direction: column;
+        flex-direction: column-reverse;
+    }
+
+    .infoContainer {
+        margin-top: 40px;
+    }
+
+    .loginInput {
+        width: 250px;
+    }
+}

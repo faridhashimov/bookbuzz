@@ -12,6 +12,7 @@
     align-items: center;
     position: relative;
 }
+
 .logo {
     position: absolute;
     display: inline-block;
@@ -70,7 +71,7 @@
     padding: 7px 25px;
     border-radius: 10px;
     cursor: pointer;
-    transition: all ease-in .2s;
+    transition: all ease-in 0.2s;
     margin-right: 30px;
     text-decoration: none;
     color: #000;
@@ -93,4 +94,14 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Monitor */
+
+/* Mobile */
+
+@media (max-width: 500px) {
+    .searchBar {
+        display: none;
+    }
 }

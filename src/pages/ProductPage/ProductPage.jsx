@@ -1,6 +1,48 @@
+import { useNavigate, useParams } from 'react-router-dom'
 import styles from './ProductPage.module.css'
+import { useGetProductQuery } from '../../redux/bookbuzzApi'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../../redux/cartSlice'
 
 const ProductPage = () => {
+    const [quantity, setQuantity] = useState(1)
+    const { id } = useParams()
+    const user = useSelector((state) => state.user)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const { data: book, isLoading, isError } = useGetProductQuery(id)
+
+    const onSetQuantity = (exp) => {
+        if (exp === 'dec') {
+            quantity > 1 && setQuantity(quantity - 1)
+        } else {
+            setQuantity(quantity + 1)
+        }
+    }
+
+    const onAddToCart = () => {
+        let data = {
+            id: book.id,
+            title: book.title,
+            subtitleShort: book.subtitleShort,
+            mainImage: book.mainImage,
+            price: book.price,
+            quantity,
+        }
+
+        try {
+            if (!user) {
+                navigate('/login', { replace: true })
+            } else {
+                dispatch(addToCart({ ...data }))
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <main>
             <div className="container">
@@ -9,83 +51,61 @@ const ProductPage = () => {
                         <div className={styles.imagesContainer}>
                             <div className={styles.mainImage}>
                                 <img
-                                    src="https://images-us.bookshop.org/ingram/9780525561460.jpg?height=500&v=v2-49de00722b6269295d067ebb8c12870b"
-                                    alt=""
+                                    src={book.mainImage}
+                                    alt="produc_main_img"
                                 />
                             </div>
                             <div className={styles.images}>
-                                <div className={styles.image}>
-                                    <img
-                                        src="https://images-us.bookshop.org/ingram/9780811228831.jpg?height=500&v=v2"
-                                        alt=""
-                                    />
-                                </div>
-                                <div className={styles.image}>
-                                    <img
-                                        src="https://images-us.bookshop.org/ingram/9780374110031.jpg?height=500&v=v2"
-                                        alt=""
-                                    />
-                                </div>
-                                <div className={styles.image}>
-                                    <img
-                                        src="https://images-us.bookshop.org/ingram/9780385491037.jpg?height=500&v=v2-d93534dfebe18fa7a1757bad47ab0edb"
-                                        alt=""
-                                    />
-                                </div>
+                                {book.images.map((item) => (
+                                    <div key={item} className={styles.image}>
+                                        <img src={item} alt="product_img_1" />
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         <div className={styles.productInfo}>
                             <h3 className={styles.productTitle}>
-                                The Robber Bride
+                                {book.title}
                             </h3>
-                            <p className={styles.desc}>
-                                Roz, Charis, and Tony--university classmates
-                                decades ago--were reunited at Zenia's funeral
-                                and have met monthly for lunch ever since,
-                                obsessively retracing the destructive swath she
-                                once cut through their lives. A brilliantly
-                                inventive fabulist, Zenia had a talent for
-                                exploiting her friends' weaknesses, wielding
-                                intimacy as a weapon and cheating them of money,
-                                time, sympathy, and men.
-                            </p>
+                            <p className={styles.desc}>{book.subtitleShort}</p>
                             <div className={styles.tags}>
-                                <div className={styles.tag}>Tag1</div>
-                                <div className={styles.tag}>Tag2</div>
-                                <div className={styles.tag}>Tag3</div>
+                                {book.tags.map((tag) => (
+                                    <div key={tag} className={styles.tag}>
+                                        {tag}
+                                    </div>
+                                ))}
                             </div>
                             <div className={styles.authors}>
-                                <div className={styles.author}>
-                                    <div className={styles.avatar}>
-                                        <img
-                                            src="https://randomuser.me/api/portraits/women/9.jpg"
-                                            alt="avatar"
-                                        />
+                                {book.authors.map((author) => (
+                                    <div key={author} className={styles.author}>
+                                        <div className={styles.avatar}>
+                                            <img
+                                                src="https://randomuser.me/api/portraits/women/9.jpg"
+                                                alt="avatar"
+                                            />
+                                        </div>
+                                        <span>{author}</span>
                                     </div>
-                                    <span>J.K.Rowling</span>
-                                </div>
-                                <div className={styles.author}>
-                                    <div className={styles.avatar}>
-                                        <img
-                                            src="https://randomuser.me/api/portraits/men/84.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <span>R.W.Tolkien</span>
-                                </div>
+                                ))}
                             </div>
                             <div className={styles.qtAndPrice}>
                                 <div className={styles.qt}>
-                                    <div>-</div>
-                                    <span>1</span>
-                                    <div>+</div>
+                                    <div onClick={() => onSetQuantity('dec')}>
+                                        -
+                                    </div>
+                                    <span>{quantity}</span>
+                                    <div onClick={() => onSetQuantity('inc')}>
+                                        +
+                                    </div>
                                 </div>
-                                <span>14.00 $</span>
+                                <span>{book.price} $</span>
                             </div>
                             <p className={styles.stock}>
-                                In Stock<span>5</span>
+                                In Stock: <span>5</span>
                             </p>
-                            <div className="btn">Add To Cart</div>
+                            <div className="btn" onClick={onAddToCart}>
+                                Add To Cart
+                            </div>
                         </div>
                     </div>
                 </div>
